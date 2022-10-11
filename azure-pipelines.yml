@@ -25,7 +25,7 @@ stages:
           inputs:
           terraformVersion: 'latest'
         - task: TerraformTaskV3@3
-          displayName: tfinit
+          displayName: init
           inputs:
             provider: 'azurerm'
             command: 'init'
@@ -34,3 +34,44 @@ stages:
             backendAzureRmStorageAccountName: '$(bkstrg)'
             backendAzureRmContainerName: '$(bkcontainer)'
             backendAzureRmKey: '$(bkstrgkey)'
+
+        - task: TerraformTaskV3@3
+          inputs:
+            provider: 'azurerm'
+            command: 'validate'
+
+  - stage: 'tfdeploy'
+    condition: succeeded('tfvalidate')
+    dependsOn: tfvalidate
+    jobs:
+      - job: apply
+        steps:
+        - task: TerraformInstaller@0
+          displayName: tfinstall
+          inputs:
+          terraformVersion: 'latest'
+        - task: TerraformTaskV3@3
+          displayName: init
+          inputs:
+            provider: 'azurerm'
+            command: 'init'
+            backendServiceArm: 'Microsoft Partner Network(03fb1c1b-27ec-410b-b2bd-2d94ffe228a7)'
+            backendAzureRmResourceGroupName: '$(bkstrgrg)'
+            backendAzureRmStorageAccountName: '$(bkstrg)'
+            backendAzureRmContainerName: '$(bkcontainer)'
+            backendAzureRmKey: '$(bkstrgkey)'
+        
+        - task: TerraformTaskV3@3
+          displayName: plan
+          inputs:
+            provider: 'azurerm'
+            command: 'plan'
+            environmentServiceNameAzureRM: 'Microsoft Partner Network(03fb1c1b-27ec-410b-b2bd-2d94ffe228a7)'
+
+        - task: TerraformTaskV3@3
+          displayName: apply
+          inputs:
+            provider: 'azurerm'
+            command: 'apply'
+            environmentServiceNameAzureRM: 'Microsoft Partner Network(03fb1c1b-27ec-410b-b2bd-2d94ffe228a7)'
+        
