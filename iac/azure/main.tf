@@ -1,10 +1,10 @@
 resource "azurerm_resource_group" "rg" {
-  name     = "iac"
-  location = "UAE NORTH"
+  name     = "to-do-rg"
+  location = "west india"
 }
 
 resource "azurerm_storage_account" "storage_account" {
-  name                     = "teststoragetf"
+  name                     = "todostoragetf1"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
   account_tier             = "Standard"
@@ -16,20 +16,20 @@ resource "azurerm_storage_account" "storage_account" {
 }
 
 resource "azurerm_storage_container" "storage_container" {
-  name                  = "containertf"
+  name                  = "todocontainertf"
   storage_account_name  = azurerm_storage_account.storage_account.name
   container_access_type = "private"
 }
 
 resource "azurerm_storage_blob" "storage_blob" {
-  name                   = "storagecontainerblobtf"
+  name                   = "todostoragecontainerblobtf"
   storage_account_name   = azurerm_storage_account.storage_account.name
   storage_container_name = azurerm_storage_container.storage_container.name
   type                   = "Block"
 }
 
 resource "azurerm_virtual_network" "virtual_network" {
-  name                = "virtualnettf"
+  name                = "todovirtualnettf"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name

@@ -1,0 +1,34 @@
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: TerraformTaskV3@3
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    backendServiceArm: 'Azure subscription 1(03fb1c1b-27ec-410b-b2bd-2d94ffe228a7)'
+    backendAzureRmResourceGroupName: 'to-do-rg'
+    backendAzureRmStorageAccountName: 'todostoragetf1'
+    backendAzureRmContainerName: 'todocontainertf'
+    backendAzureRmKey: 'T1uqDlCHALRaw4qopctrVn/QvYcaAv+65ofg3lswoCQV3dCkbuKb+xXHQLry+vXL5xfWHTpirJdm+AStTffScA=='
+- task: TerraformTaskV3@3
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    environmentServiceNameAzureRM: 'Azure subscription 1(03fb1c1b-27ec-410b-b2bd-2d94ffe228a7)'
+- task: TerraformTaskV3@3
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    environmentServiceNameAzureRM: 'Azure subscription 1(03fb1c1b-27ec-410b-b2bd-2d94ffe228a7)'
