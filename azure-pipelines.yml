@@ -23,7 +23,7 @@ stages:
         - task: TerraformInstaller@0
           displayName: tfinstall
           inputs:
-          terraformVersion: 'latest'
+            terraformVersion: 'latest'
         - task: TerraformTaskV3@3
           displayName: init
           inputs:
@@ -49,7 +49,7 @@ stages:
         - task: TerraformInstaller@0
           displayName: tfinstall
           inputs:
-          terraformVersion: 'latest'
+            terraformVersion: 'latest'
         - task: TerraformTaskV3@3
           displayName: init
           inputs:
