@@ -23,10 +23,10 @@ stages:
             terraformVersion: 'latest'
         - task: TerraformTaskV3@3
           inputs:
-             provider: 'azurerm'
-          command: 'init'
-          backendServiceArm: 'Azure subscription 1(03fe16f6-5506-4194-ad0a-207df1a24d75)'
-          backendAzureRmResourceGroupName: 'to-do-rg'
+            provider: 'azurerm'
+            command: 'init'
+            backendServiceArm: 'Azure subscription 1(03fe16f6-5506-4194-ad0a-207df1a24d75)'
+            backendAzureRmResourceGroupName: 'to-do-rg'
         - task: TerraformTaskV3@3
           displayName: validate
           inputs:
