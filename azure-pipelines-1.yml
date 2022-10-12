@@ -26,28 +26,33 @@ stages:
             provider: 'azurerm'
             command: 'init'
             backendServiceArm: 'Azure subscription 1(03fe16f6-5506-4194-ad0a-207df1a24d75)'
-            backendAzureRmResourceGroupName: 'to-do-rg'
+            backendAzureRmResourceGroupName: 'azDevTFTestRG01'
+            backendAzureRmStorageAccountName: 'cirazadopstest01'
+            backendAzureRmContainerName: 'tfstate'
+            backendAzureRmKey: 'vG+6JQtj7tOXJvTepRthBRokCp8B3VeDxDT/orjIs8EINKyx79Fb6eB6716kmPWd3fqSN5KFFTKx+AStAxNjEg=='
         - task: TerraformTaskV3@3
-          displayName: validate
           inputs:
             provider: 'azurerm'
             command: 'validate'
-  
   - stage: 'tfdeploy'
     condition: succeeded('tfvalidate')
     dependsOn: tfvalidate
     jobs:
       - job: apply
-        steps:
+        steps:      
         - task: TerraformInstaller@0
           displayName: tfinstall
           inputs:
             terraformVersion: 'latest'
         - task: TerraformTaskV3@3
-          displayName: init
           inputs:
             provider: 'azurerm'
             command: 'init'
+            backendServiceArm: 'Azure subscription 1(03fe16f6-5506-4194-ad0a-207df1a24d75)'
+            backendAzureRmResourceGroupName: 'azDevTFTestRG01'
+            backendAzureRmStorageAccountName: 'cirazadopstest01'
+            backendAzureRmContainerName: 'tfstate'
+            backendAzureRmKey: 'vG+6JQtj7tOXJvTepRthBRokCp8B3VeDxDT/orjIs8EINKyx79Fb6eB6716kmPWd3fqSN5KFFTKx+AStAxNjEg=='
         - task: TerraformTaskV3@3
           inputs:
             provider: 'azurerm'
@@ -58,10 +63,6 @@ stages:
             provider: 'azurerm'
             command: 'apply'
             environmentServiceNameAzureRM: 'Azure subscription 1(03fe16f6-5506-4194-ad0a-207df1a24d75)'
-        
-
-
-        
 
 
 
