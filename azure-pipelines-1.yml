@@ -22,6 +22,7 @@ stages:
           inputs:
             terraformVersion: 'latest'
         - task: TerraformTaskV3@3
+          displayName: init
           inputs:
             provider: 'azurerm'
             command: 'init'
@@ -31,6 +32,7 @@ stages:
             backendAzureRmContainerName: 'tfstate'
             backendAzureRmKey: 'vG+6JQtj7tOXJvTepRthBRokCp8B3VeDxDT/orjIs8EINKyx79Fb6eB6716kmPWd3fqSN5KFFTKx+AStAxNjEg=='
         - task: TerraformTaskV3@3
+          displayName: validate
           inputs:
             provider: 'azurerm'
             command: 'validate'
@@ -45,6 +47,7 @@ stages:
           inputs:
             terraformVersion: 'latest'
         - task: TerraformTaskV3@3
+          displayName: init
           inputs:
             provider: 'azurerm'
             command: 'init'
@@ -53,12 +56,14 @@ stages:
             backendAzureRmStorageAccountName: 'cirazadopstest01'
             backendAzureRmContainerName: 'tfstate'
             backendAzureRmKey: 'vG+6JQtj7tOXJvTepRthBRokCp8B3VeDxDT/orjIs8EINKyx79Fb6eB6716kmPWd3fqSN5KFFTKx+AStAxNjEg=='
-        - task: TerraformTaskV3@3
+        - task: TerraformTaskV3@3'
+          displayName: plan
           inputs:
             provider: 'azurerm'
             command: 'plan'
             environmentServiceNameAzureRM: 'Azure subscription 1(03fe16f6-5506-4194-ad0a-207df1a24d75)'
         - task: TerraformTaskV3@3
+          displayName: apply
           inputs:
             provider: 'azurerm'
             command: 'apply'
