@@ -56,7 +56,7 @@ stages:
             backendAzureRmStorageAccountName: 'cirazadopstest01'
             backendAzureRmContainerName: 'tfstate'
             backendAzureRmKey: 'vG+6JQtj7tOXJvTepRthBRokCp8B3VeDxDT/orjIs8EINKyx79Fb6eB6716kmPWd3fqSN5KFFTKx+AStAxNjEg=='
-        - task: TerraformTaskV3@3'
+        - task: TerraformTaskV3@3
           displayName: plan
           inputs:
             provider: 'azurerm'
