@@ -36,7 +36,7 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'validate'
-            
+
   - stage: 'tfdeploy'
     condition: succeeded('tfvalidate')
     dependsOn: tfvalidate
@@ -57,6 +57,7 @@ stages:
             backendAzureRmStorageAccountName: 'cirazadopstest01'
             backendAzureRmContainerName: 'tfstate'
             backendAzureRmKey: 'vG+6JQtj7tOXJvTepRthBRokCp8B3VeDxDT/orjIs8EINKyx79Fb6eB6716kmPWd3fqSN5KFFTKx+AStAxNjEg=='
+            
         - task: TerraformTaskV3@3'
           displayName: plan
           inputs:
