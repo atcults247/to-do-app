@@ -1,4 +1,4 @@
 resource "azurerm_resource_group" "rg" {
-  name     = "to-do-rg"
+  name     = "testing-to-do-rg"
   location = "west india"
 }
