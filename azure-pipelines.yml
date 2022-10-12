@@ -26,7 +26,7 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'init'
-            backendServiceArm: 'Microsoft Partner Network(03fb1c1b-27ec-410b-b2bd-2d94ffe228a7)'
+            backendServiceArm: 'Microsoft Partner Network(03fe16f6-5506-4194-ad0a-207df1a24d75)'
             backendAzureRmResourceGroupName: '$(bkstrgrg)'
         - task: TerraformTaskV3@3
           inputs:
@@ -48,19 +48,19 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'init'
-            backendServiceArm: 'Microsoft Partner Network(03fb1c1b-27ec-410b-b2bd-2d94ffe228a7)'
+            backendServiceArm: 'Microsoft Partner Network(03fe16f6-5506-4194-ad0a-207df1a24d75)'
             backendAzureRmResourceGroupName: '$(bkstrgrg)'      
         - task: TerraformTaskV3@3
           displayName: plan
           inputs:
             provider: 'azurerm'
             command: 'plan'
-            environmentServiceNameAzureRM: 'Microsoft Partner Network(03fb1c1b-27ec-410b-b2bd-2d94ffe228a7)'
+            environmentServiceNameAzureRM: 'Microsoft Partner Network(03fe16f6-5506-4194-ad0a-207df1a24d75)'
 
         - task: TerraformTaskV3@3
           displayName: apply
           inputs:
             provider: 'azurerm'
             command: 'apply'
-            environmentServiceNameAzureRM: 'Microsoft Partner Network(03fb1c1b-27ec-410b-b2bd-2d94ffe228a7)'
+            environmentServiceNameAzureRM: 'Microsoft Partner Network(03fe16f6-5506-4194-ad0a-207df1a24d75)'
         
