@@ -10,9 +10,6 @@ pool:
 
 variables:
   bkstrgrg: 'to-do-rg'
-  bkstrg: 'todostoragetf1'
-  bkcontainer: 'tfstate'
-  bkstrgkey: 'devpipeline.terraform.tfstate'
 
 stages:
   - stage: 'tfvalidate'
@@ -31,10 +28,6 @@ stages:
             command: 'init'
             backendServiceArm: 'Microsoft Partner Network(03fb1c1b-27ec-410b-b2bd-2d94ffe228a7)'
             backendAzureRmResourceGroupName: '$(bkstrgrg)'
-            backendAzureRmStorageAccountName: '$(bkstrg)'
-            backendAzureRmContainerName: '$(bkcontainer)'
-            backendAzureRmKey: '$(bkstrgkey)'
-
         - task: TerraformTaskV3@3
           inputs:
             provider: 'azurerm'
@@ -56,11 +49,7 @@ stages:
             provider: 'azurerm'
             command: 'init'
             backendServiceArm: 'Microsoft Partner Network(03fb1c1b-27ec-410b-b2bd-2d94ffe228a7)'
-            backendAzureRmResourceGroupName: '$(bkstrgrg)'
-            backendAzureRmStorageAccountName: '$(bkstrg)'
-            backendAzureRmContainerName: '$(bkcontainer)'
-            backendAzureRmKey: '$(bkstrgkey)'
-        
+            backendAzureRmResourceGroupName: '$(bkstrgrg)'      
         - task: TerraformTaskV3@3
           displayName: plan
           inputs:
