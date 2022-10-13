@@ -60,6 +60,6 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'custom'
-            customCommand: 'apply -var-file="prod-app.tfvars"'
+            customCommand: 'apply -var-file=''prod-app.tfvars'''
             outputTo: 'console'
             environmentServiceNameAzureRM: 'Azure subscription 1(03fe16f6-5506-4194-ad0a-207df1a24d75)'
