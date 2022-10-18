@@ -34,3 +34,4 @@ override.tf.json
 terraform.rc
 /azure-pipelines-with-backend.yml
 /azure-pipelines-with-backend.yml
+/azure-pipelines-with-backend.yml
