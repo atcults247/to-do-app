@@ -4,5 +4,6 @@ resource "azurerm_resource_group" "rg" {
 
   tags = {
     purpose = "dev-testing"
+    purpose2 = "testing2"
   }
 }
