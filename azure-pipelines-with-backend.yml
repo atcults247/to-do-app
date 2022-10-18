@@ -60,11 +60,11 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'plan'
-            commandOptions: '-var-file=prod-app.tfvars'
+            commandOptions: '-var-file=dev-app.tfvars'
             environmentServiceNameAzureRM: 'Azure subscription 1(03fe16f6-5506-4194-ad0a-207df1a24d75)'
         - task: TerraformTaskV3@3
           inputs:
             provider: 'azurerm'
             command: 'apply'
-            commandOptions: '-var-file=prod-app.tfvars'
+            commandOptions: '-var-file=dev-app.tfvars'
             environmentServiceNameAzureRM: 'Azure subscription 1(03fe16f6-5506-4194-ad0a-207df1a24d75)'
