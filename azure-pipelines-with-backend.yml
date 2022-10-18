@@ -26,7 +26,6 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'init'
-            workingDirectory: 'myworkspace'
             backendServiceArm: 'Azure subscription 1(03fe16f6-5506-4194-ad0a-207df1a24d75)'
             backendAzureRmResourceGroupName: 'azDevTFTestRG01'
             backendAzureRmStorageAccountName: 'cirazadopstest01'
@@ -52,19 +51,20 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'init'
-            workingDirectory: 'myworkspace'
             backendServiceArm: 'Azure subscription 1(03fe16f6-5506-4194-ad0a-207df1a24d75)'
             backendAzureRmResourceGroupName: 'azDevTFTestRG01'
             backendAzureRmStorageAccountName: 'cirazadopstest01'
             backendAzureRmContainerName: 'tfstate'
             backendAzureRmKey: 'vG+6JQtj7tOXJvTepRthBRokCp8B3VeDxDT/orjIs8EINKyx79Fb6eB6716kmPWd3fqSN5KFFTKx+AStAxNjEg=='
         - task: TerraformTaskV3@3
+          displayName: plan
           inputs:
             provider: 'azurerm'
             command: 'plan'
             commandOptions: '-var-file=prod-app.tfvars'
             environmentServiceNameAzureRM: 'Azure subscription 1(03fe16f6-5506-4194-ad0a-207df1a24d75)'
         - task: TerraformTaskV3@3
+          displayName: apply
           inputs:
             provider: 'azurerm'
             command: 'apply'
