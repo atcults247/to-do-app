@@ -11,3 +11,11 @@ terraform {
   }
 }
 
+terraform {
+  backend "azurerm" {
+    resource_group_name   = "azDevTFTestRG01"
+    storage_account_name  = "cirazadopstest01"
+    container_name        = "tfstate"
+    key                   = "terraform.tfstate"
+  }
+}
